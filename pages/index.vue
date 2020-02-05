@@ -39,21 +39,25 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" scoped>
 .my-swiper {
   height: 300px;
   width: 100%;
-}
-.swiper-slide {
-  text-align: center;
-  font-size: 38px;
-  font-weight: 700;
-  background-color: #eee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.swiper-pagination > .swiper-pagination-bullet {
-  background-color: red;
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 38px;
+    font-weight: 700;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  ::v-deep .swiper-pagination {
+    > .swiper-pagination-bullet {
+      background-color: red;
+    }
+  }
 }
 </style>
