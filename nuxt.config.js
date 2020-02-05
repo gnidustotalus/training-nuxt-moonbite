@@ -2,7 +2,7 @@ import axios from 'axios'
 require('dotenv').config()
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
   /*
    ** Headers of the page
    */
