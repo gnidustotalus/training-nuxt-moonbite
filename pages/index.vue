@@ -1,68 +1,59 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        nuxt-ssr
-      </h1>
-      <h2 class="subtitle">
-        My magnificent Nuxt.js project
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <div v-swiper:mySwiper="swiperOption" class="my-swiper">
+    <div class="swiper-wrapper">
+      <div v-for="slide in users" :key="slide.id" class="swiper-slide">
+        {{ slide.name }}
       </div>
     </div>
+    <div class="swiper-pagination"></div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Vue from 'vue'
+
+if (process.browser) {
+  require('swiper/dist/css/swiper.css')
+  const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr')
+  Vue.use(VueAwesomeSwiper)
+}
 
 export default {
-  components: {
-    Logo
+  data() {
+    return {
+      users: null,
+      swiperOption: {
+        pagination: {
+          el: '.swiper-pagination'
+        }
+      }
+    }
+  },
+  async asyncData({ $axios }) {
+    const { data } = await $axios.get('/users')
+
+    return {
+      users: data
+    }
   }
 }
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
+.my-swiper {
+  height: 300px;
+  width: 100%;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 38px;
+  font-weight: 700;
+  background-color: #eee;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+.swiper-pagination > .swiper-pagination-bullet {
+  background-color: red;
 }
 </style>
