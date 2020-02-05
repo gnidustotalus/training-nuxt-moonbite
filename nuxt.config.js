@@ -65,6 +65,13 @@ export default {
     /*
      ** You can extend webpack config here
      */
+    extractCSS: true,
+    optimization: {
+      splitChunks: {
+        minSize: 10000,
+        maxSize: 245000
+      }
+    },
     extend(config, ctx) {}
   },
   generate: {
