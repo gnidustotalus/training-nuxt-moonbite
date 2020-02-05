@@ -56,7 +56,7 @@ export default {
 
   ::v-deep .swiper-pagination {
     > .swiper-pagination-bullet {
-      background-color: red;
+      background-color: @primary;
     }
   }
 }
