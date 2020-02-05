@@ -1,6 +1,6 @@
 # training-nuxt-moonbite
 
-> Projekt testowy na rzecz szkolenia w firmie Moonbite. 
+> Projekt testowy - szkolenie w firmie Moonbite. 
 
 ## Link do prezentacji
 
